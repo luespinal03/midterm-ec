@@ -3,11 +3,12 @@ function twoSmallest(banana) {
     let largestNumber = banana[1];
     // let secondSmallestNumber = smallestNumber;
     let restOfArray = [];
-    let largestFromRestOfArray = banana[0];
+    let largestFromRestOfArray = largestNumber;
     let smallestFromRestOfArray = smallestNumber;
     let answers = [];
+    let expandable = [];
 
-    if (banana.length <= 2) {
+    if (banana.length < 2) {
         return undefined;
     }
     // finds the smallest number
@@ -28,8 +29,10 @@ function twoSmallest(banana) {
             restOfArray.push(banana[i]);
         }
     }
-
-// restOfArray = [6,7,5,6,7,5]
+//     console.log(smallestNumber); // 0
+//     console.log(largestNumber); // 12
+// console.log(restOfArray); // [0,6,12,1,0,6,1]
+// restOfArray = [0,6,12,1,0,6,1]
     // finds the middle number
     for (let i = 0; i < restOfArray.length; i++) {
         if (restOfArray[i] === smallestNumber || restOfArray[i] === largestNumber) {
@@ -37,10 +40,12 @@ function twoSmallest(banana) {
         } if (restOfArray[i] > largestFromRestOfArray) {
             largestFromRestOfArray = restOfArray[i];
 
-        } else if(restOfArray[i] < smallestFromRestOfArray) {
+        } else if(restOfArray[i] > smallestNumber && restOfArray[i] < largestNumber ) {
             
             smallestFromRestOfArray = restOfArray[i];
-            console.log(smallestFromRestOfArray)
+            // console.log(smallestFromRestOfArray)
+        } else {
+            expandable.push(restOfArray[i]);
         }
             
     }
@@ -51,5 +56,6 @@ function twoSmallest(banana) {
 
 }
 
-console.log(twoSmallest([122, 277, 409, 99, 5])); // 5,99
-console.log(twoSmallest([7,3])); // undefined
+console.log(twoSmallest([0, 6, 12, 1])); // 0,1
+console.log(twoSmallest([7,3])); // 3,7
+console.log(twoSmallest([7])); // undefined
