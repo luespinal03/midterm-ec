@@ -8,7 +8,7 @@ function twoSmallest(banana) {
     let answers = [];
 
     if (banana.length <= 2) {
-        return 'undefined';
+        return undefined;
     }
     // finds the smallest number
     for (let i = 0; i < banana.length; i++) {
