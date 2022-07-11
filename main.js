@@ -1,58 +1,26 @@
-function twoSmallest(banana) {
-    let smallestNumber = banana[0];
-    let largestNumber = banana[1];
-    // let secondSmallestNumber = smallestNumber;
-    let restOfArray = [];
-    let largestFromRestOfArray = largestNumber;
-    let smallestFromRestOfArray = smallestNumber;
-    let answers = [];
 
+
+function twoSmallest(banana) {
+    let answer = [];
     if (banana.length < 2) {
         return undefined;
     }
-    // finds the smallest number
+
     for (let i = 0; i < banana.length; i++) {
-
-        if (banana[i] < smallestNumber) {
-            smallestNumber = banana[i];
-        } else {
-            restOfArray.push(banana[i]);
+        for (let b = i + 1; b < banana.length; b++) {
+            if(banana[i] > banana[b]) { // leaves 1 alone,
+                let temp = banana[i];// 300 // turns temp into 300, 
+                banana[i] =  banana[b]; // turns banana[i] from 300 into 69 
+                banana[b] = temp; // gives temp the value of 69
+            }
         }
-    }
-
-    // finds the largest number
-    for (let i = 0; i < banana.length; i++) {
-        if (banana[i] > largestNumber) {
-            largestNumber = banana[i];
-        } else {
-            restOfArray.push(banana[i]);
         }
-    }
-//     console.log(smallestNumber); // 0
-//     console.log(largestNumber); // 12
- console.log(restOfArray); // [45,14,6,14,2]
-// restOfArray 
-    // finds the middle number
-    for (let i = 0; i < restOfArray.length; i++) {
-        if (restOfArray[i] === smallestNumber || restOfArray[i] === largestNumber) {
-            continue;
-        } if (restOfArray[i] > largestFromRestOfArray) {
-            largestFromRestOfArray = restOfArray[i];
-
-        } else if(restOfArray[i] > smallestNumber && restOfArray[i] < largestNumber ) {
-            
-            smallestFromRestOfArray = restOfArray[i];
-            console.log(smallestFromRestOfArray)
-        } 
-            
-    }
-
-    answers.push(smallestNumber);
-    answers.push(smallestFromRestOfArray);
-    return answers;
-
+        answer.push(banana[0]);
+        answer.push(banana[1]);
+    return answer;
 }
 
-console.log(twoSmallest([45, 6, 14, 2])); // 2,6
-console.log(twoSmallest([7,3])); // 3,7
+console.log(twoSmallest([1, 300, 69, 278])); // 1,55
+console.log(twoSmallest([7, 3])); // 3,7
 console.log(twoSmallest([7])); // undefined
+
